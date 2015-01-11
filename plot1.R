@@ -1,0 +1,8 @@
+library(sqldf)
+powercons <- file("household_power_consumption.txt")
+attr(powercons,"file.format") <- list(sep=";",header=TRUE)
+powercons_df <- sqldf("Select * from powercons where Date ='1/2/2007' OR Date='2/2/2007'")
+png(file="plot1.png",width = 480, height = 480,bg="transparent")
+par(mfrow=c(1,1))
+hist(powercons_df$Global_active_power,main="Global Active Power",xlab="Global Active Power(kilowatts)",col="RED")
+dev.off()
